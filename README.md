@@ -118,21 +118,24 @@ Evaluated model performance using:
 
 The models were compared based on their ability to classify Low, Medium and High transaction-demand days.
 
-| Model | Accuracy | Macro F1 |
-|---|---:|---:|
-| **Random Forest** | 45.00% | 43.02% |
-| **Gradient Boosting** | — | 38.61% |
-| **AdaBoost** | — | — |
-| **Logistic Regression** | 34.00% | 32.45% |
+| **Model** | **Accuracy** | **Macro Precision** | **Macro Recall** | **Macro F1** | **High-demand Recall** |
+|---|---:|---:|---:|---:|---:|
+| **Random Forest** | 45.00% | 43.84% | 42.83% | 43.02% | 53.19% |
+| **Gradient Boosting** | 40.00% | 39.36% | 38.66% | 38.61% | 44.68% |
+| **AdaBoost** | 43.00% | 38.27% | 38.29% | 37.54% | 59.57% |
+| **Multinomial Logistic Regression** | 34.00% | 32.92% | 33.24% | 32.45% | 38.30% |
 
 **Key Findings:**
 
-- Random Forest achieved the best overall balanced performance, with a Macro F1 score of 43.02%.
-- AdaBoost achieved the highest High-demand Recall of 59.57%.
-- Medium-demand classification remained challenging.
-- Historical transaction and customer features provided some predictive value, although further improvements are needed.
+- Random Forest achieved the best overall performance, with the highest Accuracy (45.00%) and Macro F1 (43.02%).
+- AdaBoost achieved the highest High-demand Recall (59.57%), making it the strongest model for identifying high-demand days.
+- Gradient Boosting achieved a Macro F1 of 38.61%, outperforming AdaBoost and Logistic Regression on this metric.
+- Multinomial Logistic Regression recorded the lowest overall performance.
+- Medium-demand classification remained challenging across the models.
 
 These results suggest that historical activity can help identify potential demand patterns, but the models still have room for improvement before being used for operational decisions.
+
+Overall, Random Forest provided the strongest balanced classification performance, while AdaBoost was more effective at detecting High-demand days.
 
 ### 7. Dashboard Preparation
 
