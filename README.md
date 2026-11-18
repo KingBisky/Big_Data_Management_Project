@@ -143,7 +143,14 @@ These tables support the visualisation of daily demand levels, transaction compo
 
 **Note:** Viewing the live Databricks dashboard requires a Databricks account and access to the workspace. For readers who do not have access, screenshots of the completed dashboard are provided in my **Individual Final Project Report**.
 
-## 8. Big Data Characteristics
+## 8. Big Data Characteristics (The 4 Vs)
+
+This project demonstrates the four common characteristics of Big Data:
+
+- **Volume:** The dataset contains a large amount of information, with approximately 3.16 million transaction records and 48,723 customer profiles.
+- **Velocity:** Transactions are generated continuously over time, so historical activity is aggregated by day to identify demand patterns.
+- **Variety:** The project combines different types of data, including customer profiles, transaction records, public holidays and exchange rates.
+- **Veracity:** Data quality and reliability are important. The project includes data cleaning, duplicate removal, missing value handling and validation to improve data accuracy.
 
 | Characteristic | Application in My Project |
 |---|---|
