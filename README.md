@@ -2,206 +2,179 @@
 
 ### IT3388 – Big Data Management Project
 
-## Project Overview
+## 1. Project Overview
 
-This project is part of the **Customer Intelligence Platform for Fintech**, a cloud-based Big Data project proposed for an anonymised Colombian fintech company.
+This project was developed as part of the **IT3388 Big Data Management Project**, where our team worked together to brainstorm a business problem and propose a Big Data solution for an anonymised Colombian fintech company.
 
-The overall platform aims to transform customer profiles and transaction records into predictive insights that support customer retention, future customer-value estimation, satisfaction analysis and operational planning.
+After discussing possible business challenges and analytical opportunities, we proposed the **Customer Intelligence Platform for Fintech**.
 
-My assigned workstream focuses on **Platform Transaction Demand Classification**. My responsibility was to develop a predictive solution that classifies upcoming platform transaction demand into three categories: **Low, Medium and High**.
+The idea was to turn the company's customer and transaction data into useful insights that could support better business decisions instead of relying only on historical reports.
 
-The purpose is to help the fintech company anticipate potential high-demand periods and prepare its infrastructure capacity, staffing and operational resources accordingly.
+### What Our Team Proposed
 
-### Business Problem
+Our proposed platform brings together four analytical areas:
 
-Historical transaction records describe past platform activity but do not provide a forward-looking prediction of upcoming transaction demand. Without demand predictions, the fintech company may face difficulties planning infrastructure capacity, staffing and operational resources during peak transaction periods.
-
-### Business Question
-
-Can upcoming platform transaction demand be classified as Low, Medium or High using historical transaction activity, transaction-type composition, calendar patterns and aggregated customer-level characteristics?
-
-### Objective
-
-Develop and evaluate machine learning classification models that use historical transaction and customer information to identify potential high-demand periods and support operational planning.
-
-## Overall Project Context
-
-The proposed Customer Intelligence Platform consists of four complementary analytical workstreams:
-
-| Workstream | Business Purpose |
+| Area | Business Objective |
 |---|---|
-| Customer Inactivity and Retention | Identify customers at risk of becoming inactive. |
-| Future Customer Value | Estimate customers' future transaction value. |
-| Satisfaction and Experience | Analyse customer satisfaction and service-related factors. |
-| Platform Transaction Demand | Predict upcoming transaction-demand levels for operational planning. |
+| Customer Inactivity and Retention | Identify customers who may stop using the platform. |
+| Future Customer Value | Predict the transaction value customers may generate in the future. |
+| Satisfaction and Experience | Analyse customer satisfaction and identify possible service-related issues. |
+| Platform Transaction Demand | Predict upcoming transaction demand to support operational planning. |
 
-My workstream focuses on daily platform activity rather than individual customer predictions. It complements the other workstreams by providing operational insights into when transaction demand may increase.
+Together, these areas cover customer retention, business value, customer experience and operational readiness.
 
-## Technologies Used
+### My Individual Workstream
 
-- **Databricks** and **Apache Spark / PySpark**
-- **Python**
-- **Pandas and NumPy** – Data manipulation
-- **Matplotlib and Seaborn** – Data visualisation
-- **Scikit-learn** – Machine learning
+I was responsible for **Platform Transaction Demand Classification**.
 
-## Data Sources
+My task was to develop a machine learning solution that predicts daily platform transaction demand and classifies upcoming days into three categories:
 
-The following datasets were used for my transaction demand workstream. Raw datasets are not hosted in this repository.
+- **Low** – Lower transaction activity.
+- **Medium** – Moderate transaction activity.
+- **High** – Higher transaction activity.
+
+The goal is to help the fintech company anticipate busy periods and prepare its system capacity and operational resources.
+
+## 2. Business Problem
+
+Historical transaction records show what happened in the past, but they do not directly indicate how busy the platform will be on upcoming days.
+
+Without demand predictions, the company may struggle to prepare for periods of increased transaction activity.
+
+**My objective:** Use historical transaction and customer information to develop models that classify upcoming daily demand levels.
+
+## 3. Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| **Databricks** | Cloud platform used to store, process and analyse project data. |
+| **Apache Spark / PySpark** | Processed and transformed millions of transaction records. |
+| **Python** | Main programming language. |
+| **Pandas and NumPy** | Data manipulation and numerical calculations. |
+| **Matplotlib and Seaborn** | Data visualisation and exploratory analysis. |
+| **Scikit-learn** | Developed and evaluated machine learning models. |
+
+**Why Databricks and PySpark?**
+
+The main dataset contains over 3.15 million transaction records. Databricks provides a cloud environment for working with large datasets, while PySpark allows me to clean, combine and aggregate the data efficiently instead of relying on manual spreadsheet processing.
+
+## 4. Data Sources
 
 | Dataset | Source | Purpose |
 |---|---|---|
-| **COFINFAD Customer and Transaction Data** | [Mendeley Data](https://data.mendeley.com/datasets/mhb4zn3258/1) | Customer information and historical transaction activity. |
-| **Colombia Public Holidays 2023** | [Colombia Calendario](https://colombiacalendario.com/en/2023) | Identifying public holidays and calendar patterns. |
-| **Historical TRM Exchange Rates** | [Datos Abiertos Colombia](https://www.datos.gov.co/Econom-a-y-Finanzas/Tasa-de-Cambio-Representativa-del-Mercado-Historic/mcec-87by) | Incorporating historical exchange-rate information. |
+| COFINFAD Customer and Transaction Data | [Mendeley Data](https://data.mendeley.com/datasets/mhb4zn3258/1) | Customer profiles and historical transaction records. |
+| Colombia Public Holidays 2023 | [Colombia Calendario](https://colombiacalendario.com/en/2023) | Identify holidays and calendar patterns. |
+| Historical TRM Exchange Rates | [Datos Abiertos Colombia](https://www.datos.gov.co/Econom-a-y-Finanzas/Tasa-de-Cambio-Representativa-del-Mercado-Historic/mcec-87by) | Provide historical exchange-rate information. |
 
-The main COFINFAD dataset contains approximately **48,723 customer profiles and 3,159,157 transaction records**, covering activity during 2023.
+The main COFINFAD dataset contains approximately **48,723 customer profiles and 3,159,157 transaction records**, covering 2023.
 
-## My Implementation
+Raw datasets are not included in this repository.
 
-### 1. Data Loading and Cleaning
+## 5. My Implementation
 
-- Loaded customer, transaction, Colombian public holiday and historical TRM datasets into Databricks.
-- Used PySpark to perform data processing and quality checks.
-- Handled missing values, removed duplicates and standardised data types.
+### 5.1 Data Preparation
+- Loaded datasets into Databricks.
+- Used PySpark to handle missing values, remove duplicates and standardise data types.
 - Validated transaction records and customer identifiers.
 
-### 2. Data Integration and Transformation
+### 5.2 Data Integration
+- Joined customer and transaction records using `customer_id`.
+- Integrated public holiday and exchange-rate information.
+- Aggregated individual transactions into daily records to represent overall platform activity.
 
-- Joined customer and transaction datasets using `customer_id`.
-- Integrated public holiday and historical exchange-rate information based on transaction dates.
-- Aggregated transaction records into a daily analytical dataset for demand classification.
+### 5.3 Exploratory Data Analysis (EDA)
+- Examined daily transaction trends.
+- Compared activity across weekdays and public holidays.
+- Analysed transaction types and active-customer activity.
+- Identified historical patterns that could help explain changes in demand.
 
-### 3. Exploratory Data Analysis (EDA)
+### 5.4 Feature Engineering
 
-- Analysed daily transaction demand and transaction trends.
-- Investigated differences in transaction activity across weekdays and public holidays.
-- Examined transaction-type composition and active-customer activity.
-- Explored historical patterns that could help explain changes in transaction demand.
+Created historical features to help models identify demand patterns, including:
 
-### 4. Feature Engineering
-
-Created historical features using information available before the prediction date to reduce the risk of data leakage.
-
-Features included:
-
-- Previous-day transaction counts and historical rolling averages.
-- Transaction-type proportions, including transfers, withdrawals, payments and deposits.
+- Previous-day transaction counts and rolling averages.
+- Transaction-type proportions.
 - Active-customer activity and application engagement.
 - Product adoption and customer composition.
-- Historical TRM and calendar information.
+- Calendar and historical exchange-rate information.
 
-Implemented shifted historical windows so that demand predictions were based on past information rather than data from the prediction date.
+Used shifted historical windows to ensure predictions relied on past information and reduce data leakage.
 
-### 5. Machine Learning
+### 5.5 Machine Learning
 
-Developed and compared four classification models to predict daily transaction demand:
+Developed and compared four classification models:
 
 - Multinomial Logistic Regression
 - Random Forest
 - Gradient Boosting
 - AdaBoost
 
-Used a chronological 70:30 training and testing split, where earlier dates were used for training and later dates were reserved for testing.
+Used a chronological **70:30 training and testing split**, training on earlier dates and testing on later dates to better reflect real-world future predictions.
 
-This approach reflects the time-based nature of the prediction task and avoids randomly mixing earlier and later dates between training and testing.
+## 6. Model Evaluation
 
-### 6. Model Evaluation
+Models were evaluated using Accuracy, Macro Precision, Macro Recall, Macro F1 and High-demand Recall.
 
-Evaluated model performance using:
-
-- Accuracy
-- Macro Precision
-- Macro Recall
-- Macro F1
-- High-demand Recall
-
-The models were compared based on their ability to classify Low, Medium and High transaction-demand days.
-
-| **Model** | **Accuracy** | **Macro Precision** | **Macro Recall** | **Macro F1** | **High-demand Recall** |
+| Model | Accuracy | Macro Precision | Macro Recall | Macro F1 | High-demand Recall |
 |---|---:|---:|---:|---:|---:|
-| **Random Forest** | 45.00% | 43.84% | 42.83% | 43.02% | 53.19% |
-| **Gradient Boosting** | 40.00% | 39.36% | 38.66% | 38.61% | 44.68% |
-| **AdaBoost** | 43.00% | 38.27% | 38.29% | 37.54% | 59.57% |
-| **Multinomial Logistic Regression** | 34.00% | 32.92% | 33.24% | 32.45% | 38.30% |
+| Random Forest | 45.00% | 43.84% | 42.83% | 43.02% | 53.19% |
+| Gradient Boosting | 40.00% | 39.36% | 38.66% | 38.61% | 44.68% |
+| AdaBoost | 43.00% | 38.27% | 38.29% | 37.54% | 59.57% |
+| Multinomial Logistic Regression | 34.00% | 32.92% | 33.24% | 32.45% | 38.30% |
 
-**Key Findings:**
+### Key Findings
 
-- Random Forest achieved the best overall performance, with the highest Accuracy (45.00%) and Macro F1 (43.02%).
-- AdaBoost achieved the highest High-demand Recall (59.57%), making it the strongest model for identifying high-demand days.
-- Gradient Boosting achieved a Macro F1 of 38.61%, outperforming AdaBoost and Logistic Regression on this metric.
-- Multinomial Logistic Regression recorded the lowest overall performance.
-- Medium-demand classification remained challenging across the models.
+- **Random Forest** achieved the best overall performance, with the highest Accuracy and Macro F1.
+- **AdaBoost** achieved the highest High-demand Recall at 59.57%, making it the strongest model for identifying actual high-demand days.
+- **Medium-demand classification** remained challenging across the models.
 
-These results suggest that historical activity can help identify potential demand patterns, but the models still have room for improvement before being used for operational decisions.
+Overall, Random Forest provided the strongest balanced performance, while AdaBoost was better at detecting high-demand periods. Further improvements are needed before using these predictions for operational decisions.
 
-Overall, Random Forest provided the strongest balanced classification performance, while AdaBoost was more effective at detecting High-demand days.
+## 7. Dashboard Preparation
 
-### 7. Dashboard Preparation
-
-Prepared four Unity Catalog tables in Databricks to support dashboard visualisation of transaction demand patterns:
+Prepared four analytical tables in Databricks Unity Catalog for dashboard visualisation:
 
 - `dashboard_demand_calendar`
 - `dashboard_transaction_mix`
 - `dashboard_active_customers`
 - `dashboard_historical_signals`
 
-These tables support the visualisation of:
+These tables support the visualisation of daily demand levels, transaction composition, active customers and historical demand patterns.
 
-- Daily transaction-demand levels.
-- Transaction-type composition.
-- Active-customer activity.
-- Historical demand signals.
+## 8. Big Data Characteristics
 
-The intended operational use is to help users monitor demand patterns and identify potential high-demand periods.
+| Characteristic | Application in My Project |
+|---|---|
+| **Volume** | Processed over 3.15 million transaction records. |
+| **Velocity** | Aggregated transaction activity daily to support upcoming demand predictions. |
+| **Variety** | Combined customer, transaction, holiday and exchange-rate data. |
+| **Veracity** | Performed data cleaning, duplicate removal and validation checks. |
 
-## Big Data Architecture
+## 9. Limitations and Future Improvements
 
-The overall project proposal follows a cloud-based Big Data processing approach:
+- Approximately one year of historical data limits long-term trend analysis.
+- Daily aggregation results in fewer modelling observations than the original transaction dataset.
+- Medium-demand classification needs improvement.
+- Further model tuning and testing on future data could improve reliability.
+- Additional runtime and resource benchmarking is needed to evaluate scalability.
 
-1. Upload raw customer and transaction datasets to cloud storage.
-2. Use Databricks and Apache Spark to clean, integrate and process large datasets.
-3. Create analytical datasets and historical features for machine learning.
-4. Train and evaluate models using chronological validation.
-5. Store analytical outputs in query-ready tables.
-6. Connect the results to dashboards for business interpretation and decision-making.
-
-My workstream contributes to this architecture through PySpark-based data processing, daily demand aggregation, machine learning classification and dashboard-ready analytical tables.
-
-## Big Data Characteristics
-
-My implementation demonstrates several Big Data characteristics:
-
-- **Volume:** Processed a dataset containing over 3.15 million transaction records.
-- **Velocity:** Aggregated transaction activity by day to support upcoming demand prediction.
-- **Variety:** Combined customer, transaction, public holiday and exchange-rate datasets.
-- **Veracity:** Performed data cleaning, duplicate checks, missing-value handling and data validation.
-
-## Limitations and Future Improvements
-
-- The dataset covers approximately one year of historical activity, limiting the analysis of long-term seasonal patterns.
-- Daily demand classification provides a relatively small number of observations compared with transaction-level modelling.
-- Medium-demand classification remains challenging and could benefit from further feature engineering and model tuning.
-- Additional validation on future transaction periods would help determine whether the models generalise beyond the available dataset.
-- Further runtime and resource benchmarking would be needed to evaluate processing scalability under larger data volumes.
-
-## Repository Contents
+## 10. Repository Contents
 
 | File | Description |
 |---|---|
-| `244423Q_IT3388_KangBin_BDMPJ_FINAL.ipynb` | Main implementation notebook covering data preparation, feature engineering and machine learning. |
-| `244423Q_KangBin_IT3388_EDA.ipynb` | Exploratory Data Analysis notebook. |
-| `KangBin_244423Q_IT3388_Final_Report.docx` | Individual final project report. |
-| `IT3388_KangBin_EDA_Report.docx` | Exploratory Data Analysis report. |
-| `Project Proposal.docx` | Initial group project proposal describing the Customer Intelligence Platform and its four workstreams. |
-| `IT3388 2026S1 Project Guide_V1.pdf` | Official project guide. |
+| `Project Proposal.docx` | Group proposal documenting the initial brainstorming outcome, business problem, project objectives and proposed Customer Intelligence Platform. |
+| `244423Q_IT3388_KangBin_BDMPJ_FINAL.ipynb` | Main implementation notebook covering data preparation, feature engineering, model development and evaluation. |
+| `244423Q_KangBin_IT3388_EDA.ipynb` | Notebook containing exploratory data analysis and visualisations. |
+| `KangBin_244423Q_IT3388_Final_Report.docx` | Individual final report documenting my methodology, implementation, results and recommendations. |
+| `IT3388_KangBin_EDA_Report.docx` | EDA report describing the datasets and initial findings. |
+| `IT3388 2026S1 Project Guide_V1.pdf` | Official IT3388 project requirements and guidelines. |
 
-## Conclusion
+## 11. Conclusion
 
-Through this workstream, I developed a Big Data processing and machine learning pipeline for classifying daily fintech transaction demand.
+This project began with a team effort to identify a real business problem and propose a unified Customer Intelligence Platform for a fintech company.
 
-The implementation involved processing large datasets using PySpark, conducting exploratory data analysis, engineering historical features, training and evaluating multiple classification models, and preparing analytical tables for dashboard visualisation.
+My individual contribution focused on developing the transaction-demand classification workstream. Using Databricks, PySpark and machine learning, I built a workflow covering data preparation, exploratory analysis, feature engineering, model evaluation and dashboard preparation.
 
-The results showed that Random Forest achieved the strongest overall balanced performance, while AdaBoost was better at identifying High-demand days.
+Random Forest achieved the best overall balanced performance, while AdaBoost was more effective at identifying high-demand days.
 
-Overall, this workstream contributes to the proposed Customer Intelligence Platform by providing predictive operational insights that can help the fintech company prepare for potential changes in transaction demand.
+The work demonstrates how historical fintech transaction data can be transformed into predictive insights to help anticipate platform activity and support operational planning.
