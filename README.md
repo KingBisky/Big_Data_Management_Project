@@ -68,7 +68,7 @@ The main dataset contains over 3.15 million transaction records. Databricks prov
 
 The main COFINFAD dataset contains approximately **48,723 customer profiles and 3,159,157 transaction records**, covering 2023.
 
-Raw datasets are not included in this repository.
+Raw datasets are not included in this repository doe to file size limitations.
 
 ## 5. My Implementation
 
