@@ -141,6 +141,7 @@ My implementation demonstrates several Big Data characteristics:
 | `244423Q_KangBin_IT3388_EDA.ipynb` | Exploratory Data Analysis notebook. |
 | `KangBin_244423Q_IT3388_Final_Report.docx` | Individual final project report. |
 | `IT3388_KangBin_EDA_Report.docx` | Exploratory Data Analysis report. |
+| `Project Proposal.docx` | Initial group project proposal detailing all 4 workstreams.|
 | `IT3388 2026S1 Project Guide_V1.pdf` | Official project guide. |
 
 ## Conclusion
