@@ -141,7 +141,7 @@ Prepared four analytical tables in Databricks Unity Catalog for dashboard visual
 
 These tables support the visualisation of daily demand levels, transaction composition, active customers and historical demand patterns.
 
-**Note:** The live Databricks dashboard link is currently unavailable. However, screenshots of the completed dashboard are included in my **Individual Final Project Report** for reference.
+**Note:** Viewing the live Databricks dashboard requires a Databricks account and access to the workspace. For readers who do not have access, screenshots of the completed dashboard are provided in my **Individual Final Project Report**.
 
 ## 8. Big Data Characteristics
 
